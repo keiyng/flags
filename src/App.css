@@ -1,0 +1,15 @@
+.content {
+  float: left;
+  margin: 10px;
+  background-color: #e5e5e5;
+  text-align: center
+}
+
+/* .flashcardName {
+  color: red;
+  position: absolute;
+  background-color: yellow;
+  width: 300px;
+  height: 200px;
+  top: 400px;
+} */
