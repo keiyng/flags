@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import axios from 'axios';
+
+import Menu from './Menu';
 import Learning from './Modes/Learning';
 import Flashcard from './Modes/Flashcard';
 import Quiz from './Modes/Quiz';
-import Menu from './Menu';
+
+const CancelToken = axios.CancelToken;
+const source = CancelToken.source();
 
 class Dashboard extends Component {
   constructor(props) {
@@ -12,24 +16,24 @@ class Dashboard extends Component {
     this.state = {
       data: {},
       dataRandom: {},
-      unmount: false
+      error: false
     };
   }
 
   componentDidMount() {
+
     let dataObj = {
       All: [],
       Africa: [],
       Asia: [],
       Americas: [],
       Europe: [],
-      Oceania: [],
-      Others: []
+      Oceania: []
     };
+
     axios
-      .get('https://restcountries.eu/rest/v2/all')
+      .get('https://restcountries.eu/rest/v2/all', {cancelToken: source.token})
       .then(res => {
-        if (this.unmount) return;
         for (let i = 0; i < res.data.length; i++) {
           dataObj['All'].push({
             name: res.data[i].name,
@@ -37,43 +41,9 @@ class Dashboard extends Component {
             flag: res.data[i].flag,
             code: res.data[i].alpha2Code
           });
-          if (res.data[i].region === 'Africa') {
-            dataObj['Africa'].push({
-              name: res.data[i].name,
-              region: res.data[i].region,
-              flag: res.data[i].flag,
-              code: res.data[i].alpha2Code
-            });
-          } else if (res.data[i].region === 'Asia') {
-            dataObj['Asia'].push({
-              name: res.data[i].name,
-              region: res.data[i].region,
-              flag: res.data[i].flag,
-              code: res.data[i].alpha2Code
-            });
-          } else if (res.data[i].region === 'Americas') {
-            dataObj['Americas'].push({
-              name: res.data[i].name,
-              region: res.data[i].region,
-              flag: res.data[i].flag,
-              code: res.data[i].alpha2Code
-            });
-          } else if (res.data[i].region === 'Europe') {
-            dataObj['Europe'].push({
-              name: res.data[i].name,
-              region: res.data[i].region,
-              flag: res.data[i].flag,
-              code: res.data[i].alpha2Code
-            });
-          } else if (res.data[i].region === 'Oceania') {
-            dataObj['Oceania'].push({
-              name: res.data[i].name,
-              region: res.data[i].region,
-              flag: res.data[i].flag,
-              code: res.data[i].alpha2Code
-            });
-          } else {
-            dataObj['Others'].push({
+          
+          if (Object.keys(dataObj).includes(res.data[i].region)) {
+            dataObj[res.data[i].region].push({
               name: res.data[i].name,
               region: res.data[i].region,
               flag: res.data[i].flag,
@@ -81,24 +51,27 @@ class Dashboard extends Component {
             });
           }
         }
-        let data = { ...this.state.data };
-        data = JSON.parse(JSON.stringify(dataObj));
-        let randomize = JSON.parse(JSON.stringify(dataObj));
 
-        for (let item in randomize) {
-            randomize[item].sort((a, b) => {
+        // deep copy objects
+        let data = JSON.parse(JSON.stringify(dataObj));
+        let dataRandom = JSON.parse(JSON.stringify(dataObj));
+
+        for (let item in dataRandom) {
+          dataRandom[item].sort((a, b) => {
                 return 0.5 - Math.random();
             });
         }
-        this.setState({ data: data, dataRandom: randomize });
+        this.setState({ data: data, dataRandom: dataRandom });
+
       })
       .catch(err => {
-        console.log(err);
+        if (axios.isCancel(err)) {
+          console.log('request is cancelled:', err.message)
+        }
+        else if (err.response.status !== 200) {
+          this.setState({error: true})
+        }
       });
-  }
-
-  compoenentWillUnmount() {
-    this.unmount = true;
   }
 
   render() {
@@ -121,6 +94,7 @@ class Dashboard extends Component {
             />
           </div>
         </BrowserRouter>
+        {this.state.error && <p>There is an error fetching the content. Please try again. </p>}
       </div>
     );
   }
