@@ -2,20 +2,20 @@ import React from 'react';
 import _ from 'lodash';
 
 const Sidebar = props => {
+
   const continents = [
     'All',
     'Africa',
     'Americas',
     'Asia',
     'Europe',
-    'Oceania',
-    'Others'
+    'Oceania'
   ];
 
   const continentsList = _.map(continents, continent => {
     return (
-      <li onClick={() => props.onClick(continent)} key={continent}>
-        {continent}
+      <li className={props.selected === continent ? 'selected' : 'unselected'} onClick={() => props.onClick(continent)} key={continent}>
+        <span>{continent}</span>
       </li>
     );
   });

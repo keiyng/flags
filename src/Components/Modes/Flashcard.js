@@ -17,7 +17,6 @@ class Flashcard extends Component {
     this.toggleOrder = this.toggleOrder.bind(this);
   }
 
-
   toggleOrder() {
     this.setState(prevState => ({
       random: !prevState.random
@@ -44,9 +43,7 @@ class Flashcard extends Component {
   }
 
   renderContent(continent, continentRandom) {
-    let continentList = this.state.random
-      ? continentRandom
-      : continent;
+    let continentList = this.state.random ? continentRandom : continent;
 
     return continentList.map(country => {
       return (
@@ -69,17 +66,19 @@ class Flashcard extends Component {
   render() {
     const data = this.props.data;
     const dataRandom = this.props.dataRandom;
-    
+
     return (
       <div>
         <h2>Flashcard Mode</h2>
         <button onClick={this.toggleOrder}>
           {this.state.random ? 'alphabetical order' : 'random order'}
         </button>
-        <Sidebar onClick={this.handleClick} />
-
+        <Sidebar selected={this.state.current} onClick={this.handleClick} />
         {data[this.state.current] &&
-          this.renderContent(data[this.state.current], dataRandom[this.state.current])}
+          this.renderContent(
+            data[this.state.current],
+            dataRandom[this.state.current]
+          )}
       </div>
     );
   }

@@ -51,8 +51,7 @@ class Learning extends Component {
         <button onClick={this.toggleOrder}>
           {this.state.random ? 'alphabetical order' : 'random order'}
         </button>
-        <Sidebar onClick={this.handleClick} />
-
+        <Sidebar selected={this.state.current} onClick={this.handleClick} />
         {data[this.state.current] &&
           this.renderContent(data[this.state.current], dataRandom[this.state.current])}
       </div>

@@ -5,6 +5,18 @@
   text-align: center
 }
 
+.correct {
+  color: green
+}
+
+.selected {
+  color: red
+}
+
+.unselected {
+  color: black
+}
+
 /* .flashcardName {
   color: red;
   position: absolute;
