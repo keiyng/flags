@@ -36,7 +36,7 @@ class Quiz extends Component {
         ) : (
           !this.state.inProgress && <button onClick={this.startQuiz}>Click to start</button>
         )}
-        {this.state.inProgress && <QuizItem continentFull={this.props.data[this.state.current]} continent={this.props.dataRandom[this.state.current]}/>}
+        {this.state.inProgress && <QuizItem continent={this.props.data[this.state.current]}/>}
       </div>
     );
   }
