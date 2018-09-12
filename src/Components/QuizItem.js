@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Flag from './Flag';
 import MultipleChoice from './MultipleChoice';
+
 import _ from 'lodash';
 
 class QuizItem extends Component {
@@ -41,8 +42,8 @@ class QuizItem extends Component {
         tested: [...prevState.tested, nextRandom['name']],
         next: nextRandom
       }))  
-    } else if (this.state.tested.length === 49) {
-      console.log('ended')
+    } else if (this.state.tested.length === this.state.continent.length) {
+      this.setState({ended: true})
     } else {
       this.generateNext()
     }
@@ -58,9 +59,14 @@ class QuizItem extends Component {
 
 
   render() {
+    console.log('this.state.tested.length: ' + this.state.tested.length)
+    console.log('this.state.continent.length: ' + this.state.continent.length)
+    console.log('this.state.correct: ' + this.state.correct)
+    console.log('this.state.wrong: ' + this.state.wrong)
+
     return (
       <div>
-        {!this.state.ended && (
+        {this.state.ended ? <p>Ended</p> : (
           <div>
             <Flag country={this.state.next} />
               <MultipleChoice
@@ -70,6 +76,7 @@ class QuizItem extends Component {
                 generateNext={this.generateNext}
                 correct={this.state.correct}
                 wrong={this.state.wrong}
+                ended={this.state.ended}
               />
           </div>
         )}

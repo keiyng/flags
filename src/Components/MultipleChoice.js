@@ -50,23 +50,33 @@ class MultipleChoice extends Component {
   }
 
   checkAnswer(choice) {
-    if (choice !== this.props.answer) {
-      this.props.recordAnswer(false)
-      this.setState({answered: true})
-    }
-    else {
-      this.props.recordAnswer(true)
-      this.setState({answered: true})
+    if(this.props.ended) {
+      console.log('ended!!!!')
+    } else {
+      if(!this.state.answered) {
+        if (choice !== this.props.answer) {
+          this.props.recordAnswer(false)
+          this.setState({answered: true})
+        }
+        else {
+          this.props.recordAnswer(true)
+          this.setState({answered: true})
+        }
+      }
     }
   }
 
   nextItem() {
-    this.props.generateNext()
-    this.setState({
-      answered: false,
-      message: '',
-      selected: ''
-    })
+    if(this.props.ended) {
+      console.log('ended!!!!')
+    } else {
+      this.props.generateNext()
+      this.setState({
+        answered: false,
+        message: '',
+        selected: ''
+      })
+    }
   }
 
   displayChoices() {
