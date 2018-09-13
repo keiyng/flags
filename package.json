@@ -1,19 +1,26 @@
 {
-  "name": "world-flags",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.18.0",
-    "lodash": "^4.17.10",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4"
+  "name": "countries-flag",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "10.9.0",
+    "npm": "6.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keiyng/countries-flag.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keiyng/countries-flag/issues"
+  },
+  "homepage": "https://github.com/keiyng/countries-flag#readme",
+  "dependencies": {
+    "express": "^4.16.3"
   }
 }
