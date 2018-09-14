@@ -18,7 +18,7 @@ class Menu extends Component {
               <Link to="/quiz">Quiz Mode</Link>
             </li>
             <li>
-              <Link to="/quiz">Login</Link>
+              <a href="/auth/google">Sign in with Google</a>
             </li>
             <li>
               <Link to="/">Back</Link>
