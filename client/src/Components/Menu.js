@@ -18,6 +18,9 @@ class Menu extends Component {
               <Link to="/quiz">Quiz Mode</Link>
             </li>
             <li>
+              <Link to="/quiz">Login</Link>
+            </li>
+            <li>
               <Link to="/">Back</Link>
             </li>
           </ul>
