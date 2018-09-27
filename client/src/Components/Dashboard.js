@@ -21,7 +21,6 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-
     let dataObj = {
       All: [],
       Africa: [],
@@ -75,15 +74,16 @@ class Dashboard extends Component {
   }
 
   render() {
+    // should the browesr router be moved to app.js????
     return (
       <div>
         <BrowserRouter>
           <div>
             <Menu />
-            <Route
+            {/* <Route
               path="/learning"
               render={props => <Learning {...props} data={this.state.data} dataRandom={this.state.dataRandom} />}
-            />
+            /> */}
             <Route
               path="/flashcard"
               render={props => <Flashcard {...props} data={this.state.data} dataRandom={this.state.dataRandom} />}

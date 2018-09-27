@@ -59,8 +59,8 @@ class QuizItem extends Component {
 
 
   render() {
-    console.log('this.state.tested.length: ' + this.state.tested.length)
-    console.log('this.state.continent.length: ' + this.state.continent.length)
+    // console.log('this.state.tested.length: ' + this.state.tested.length)
+    // console.log('this.state.continent.length: ' + this.state.continent.length)
     console.log('this.state.correct: ' + this.state.correct)
     console.log('this.state.wrong: ' + this.state.wrong)
 

@@ -10,23 +10,9 @@ class MultipleChoice extends Component {
       answered: false,
       message: ''
     };
-    this.displayChoices = this.displayChoices.bind(this);
-    this.setChoices = this.setChoices.bind(this);
+    this.checkAnswer = this.checkAnswer.bind(this)
     this.selectAnswer = this.selectAnswer.bind(this);
-    this.checkAnswer = this.checkAnswer.bind(this);
     this.nextItem = this.nextItem.bind(this);
-  }
-
-  setChoices = (answer) => {
-    let choices = [];
-    choices.push(answer);
-    while (choices.length < 4) {
-        let randomItem = _.sample(this.props.continent)
-        if (choices.indexOf(randomItem['name']) === -1) {
-          choices.push(randomItem['name']);
-        }
-      }
-    return choices;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -45,16 +31,47 @@ class MultipleChoice extends Component {
     this.setState({ choices: choices });
   }
 
+  setChoices (answer) {
+    let choices = [];
+    choices.push(answer);
+    while (choices.length < 4) {
+        let randomItem = _.sample(this.props.continent)
+        if (choices.indexOf(randomItem['name']) === -1) {
+          choices.push(randomItem['name']);
+        }
+      }
+    return choices;
+  }
+
+
+  displayChoices() {
+    const choices = this.state.choices.slice();
+    return choices.sort().map(choice => {
+      return (
+        <div key={choice}>
+        {!this.state.answered ? 
+        <li value={choice} className={choice === this.state.selected ? 'selected' : 'unselected'} onClick={this.selectAnswer.bind(this, choice)}>
+        {choice}
+        </li> : 
+        <li value={choice} className={choice === this.props.answer ? 'answer' : 'unselected'}>
+        {choice}
+        </li>}
+        </div>
+      );
+    });
+  }
+
+
   selectAnswer(choice) {
     this.setState({ selected: choice });
   }
 
-  checkAnswer(choice) {
+  checkAnswer() {
     if(this.props.ended) {
       console.log('ended!!!!')
     } else {
       if(!this.state.answered) {
-        if (choice !== this.props.answer) {
+        if (this.state.selected !== this.props.answer) {
           this.props.recordAnswer(false)
           this.setState({answered: true})
         }
@@ -78,24 +95,6 @@ class MultipleChoice extends Component {
       })
     }
   }
-
-  displayChoices() {
-    const choices = this.state.choices.slice();
-    return choices.sort().map(choice => {
-      return (
-        <div key={choice}>
-        {!this.state.answered ? 
-        <li value={choice} className={choice === this.state.selected ? 'selected' : 'unselected'} onClick={() => this.selectAnswer(choice)}>
-        {choice}
-        </li> : 
-        <li value={choice} className={choice === this.props.answer ? 'answer' : 'unselected'}>
-        {choice}
-        </li>}
-        </div>
-      );
-    });
-  }
-
   
 
   render() {
@@ -106,8 +105,8 @@ class MultipleChoice extends Component {
       <div>
         <ul>{this.displayChoices()}</ul>
         <p>{this.state.message}</p>
-       <button onClick={() => {this.checkAnswer(this.state.selected)}}>Click to Submit</button>
-       <button onClick={() => {this.nextItem()}}>Next Item</button>
+       <button onClick={this.checkAnswer}>Click to Submit</button>
+       <button onClick={this.nextItem}>Next Item</button>
       </div>
     );
   }
