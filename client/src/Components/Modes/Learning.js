@@ -11,7 +11,6 @@ class Learning extends Component {
       random: false
     };
     this.handleClick = this.handleClick.bind(this);
-    this.renderContent = this.renderContent.bind(this);
     this.toggleOrder = this.toggleOrder.bind(this);
   }
 

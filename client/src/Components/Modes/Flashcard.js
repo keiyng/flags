@@ -12,8 +12,6 @@ class Flashcard extends Component {
       random: false
     };
     this.handleClick = this.handleClick.bind(this);
-    this.renderContent = this.renderContent.bind(this);
-    this.showName = this.showName.bind(this);
     this.toggleOrder = this.toggleOrder.bind(this);
   }
 
@@ -23,7 +21,7 @@ class Flashcard extends Component {
     }));
   }
 
-  showName(countryName) {
+  showName (countryName) {
     if (this.state.show.includes(countryName)) {
       let show = this.state.show.slice();
       const index = show.indexOf(countryName);
