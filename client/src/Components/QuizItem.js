@@ -6,7 +6,6 @@ import _ from 'lodash';
 
 class QuizItem extends Component {
   constructor(props) {
-    
     super(props);
     this.state = {
       continent: this.props.continent,
@@ -22,59 +21,64 @@ class QuizItem extends Component {
     this.generateNext = this.generateNext.bind(this);
   }
 
-
   componentWillMount() {
-    let randomNext = _.sample(this.state.continent)
+    let randomNext = _.sample(this.state.continent);
     this.setState(prevState => ({
       answered: [...prevState.answered, randomNext],
       next: randomNext
-    }))
+    }));
   }
 
   recordAnswer(choice) {
     if (choice) {
       this.setState(prevState => ({
-        correct: (prevState.correct + 1),
-      }))
+        correct: prevState.correct + 1
+      }));
     } else {
       this.setState(prevState => ({
-        wrong: (prevState.wrong += 1),
-      }))
+        wrong: (prevState.wrong += 1)
+      }));
     }
   }
 
   generateNext() {
-    let randomNext = _.sample(this.state.continent)
+    let randomNext = _.sample(this.state.continent);
 
     if (!this.state.answered.includes(randomNext['name'])) {
       this.setState(prevState => ({
         answered: [...prevState.answered, randomNext['name']],
         next: randomNext
-      }))  
+      }));
     } else if (this.state.answered.length === this.state.continent.length) {
-      this.setState({ended: true})
+      this.setState({ ended: true });
     } else {
-      this.generateNext()
+      this.generateNext();
     }
   }
 
-
-
   render() {
+    console.log(this.state.continent.length - this.state.answered.length);
     return (
       <div>
-        {this.state.ended ? <p>Ended</p> : (
+        {this.state.ended ? (
+          <div>
+            <h2>End of Quiz</h2>
+            <div>
+              You got {this.state.correct}/{this.state.continent.length} flags right!
+            </div>
+          </div>
+        ) : (
           <div>
             <Flag country={this.state.next} />
-              <MultipleChoice
-                continent={this.state.continent}
-                answer={this.state.next['name']}
-                recordAnswer={this.recordAnswer}
-                generateNext={this.generateNext}
-                correct={this.state.correct}
-                wrong={this.state.wrong}
-                ended={this.state.ended}
-              />
+            <MultipleChoice
+              continent={this.state.continent}
+              answer={this.state.next['name']}
+              recordAnswer={this.recordAnswer}
+              generateNext={this.generateNext}
+              correct={this.state.correct}
+              wrong={this.state.wrong}
+              ended={this.state.ended}
+            />
           </div>
         )}
       </div>

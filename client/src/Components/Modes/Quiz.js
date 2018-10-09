@@ -29,7 +29,6 @@ class Quiz extends Component {
   render() {
     return (
       <div>
-        <h2>Quiz Mode</h2>
         {!this.state.inProgress && <Sidebar selected={this.state.current} onClick={this.handleClick} />}
         {this.state.current === '' ? (
           <p>choose a section first</p>
