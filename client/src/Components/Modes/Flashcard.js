@@ -67,7 +67,6 @@ class Flashcard extends Component {
 
     return (
       <div>
-        <h2>Flashcard Mode</h2>
         <button onClick={this.toggleOrder}>
           {this.state.random ? 'alphabetical order' : 'random order'}
         </button>

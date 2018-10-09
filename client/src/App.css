@@ -1,3 +1,7 @@
+ul {
+  list-style-type: none;
+}
+
 .content {
   float: left;
   margin: 10px;
@@ -16,12 +20,3 @@
 .unselected {
   color: black
 }
-
-/* .flashcardName {
-  color: red;
-  position: absolute;
-  background-color: yellow;
-  width: 300px;
-  height: 200px;
-  top: 400px;
-} */

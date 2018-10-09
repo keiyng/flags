@@ -57,7 +57,6 @@ class QuizItem extends Component {
   }
 
   render() {
-    console.log(this.state.continent.length - this.state.answered.length);
     return (
       <div>
         {this.state.ended ? (
