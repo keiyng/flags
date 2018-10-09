@@ -14,12 +14,21 @@ class QuizItem extends Component {
       correct: 0,
       ended: false,
       answer: '',
-      tested: [],
+      answered: [],
       next: undefined
     };
 
     this.recordAnswer = this.recordAnswer.bind(this);
     this.generateNext = this.generateNext.bind(this);
+  }
+
+
+  componentWillMount() {
+    let randomNext = _.sample(this.state.continent)
+    this.setState(prevState => ({
+      answered: [...prevState.answered, randomNext],
+      next: randomNext
+    }))
   }
 
   recordAnswer(choice) {
@@ -35,35 +44,23 @@ class QuizItem extends Component {
   }
 
   generateNext() {
-    let nextRandom = _.sample(this.state.continent)
+    let randomNext = _.sample(this.state.continent)
 
-    if (!this.state.tested.includes(nextRandom['name'])) {
+    if (!this.state.answered.includes(randomNext['name'])) {
       this.setState(prevState => ({
-        tested: [...prevState.tested, nextRandom['name']],
-        next: nextRandom
+        answered: [...prevState.answered, randomNext['name']],
+        next: randomNext
       }))  
-    } else if (this.state.tested.length === this.state.continent.length) {
+    } else if (this.state.answered.length === this.state.continent.length) {
       this.setState({ended: true})
     } else {
       this.generateNext()
     }
   }
 
-  componentWillMount() {
-    let nextRandom = _.sample(this.state.continent)
-    this.setState(prevState => ({
-      tested: [...prevState.tested, nextRandom],
-      next: nextRandom
-    }))
-  }
 
 
   render() {
-    // console.log('this.state.tested.length: ' + this.state.tested.length)
-    // console.log('this.state.continent.length: ' + this.state.continent.length)
-    console.log('this.state.correct: ' + this.state.correct)
-    console.log('this.state.wrong: ' + this.state.wrong)
-
     return (
       <div>
         {this.state.ended ? <p>Ended</p> : (

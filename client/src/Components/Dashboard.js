@@ -3,7 +3,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import axios from 'axios';
 
 import Menu from './Menu';
-import Learning from './Modes/Learning';
 import Flashcard from './Modes/Flashcard';
 import Quiz from './Modes/Quiz';
 
@@ -80,10 +79,6 @@ class Dashboard extends Component {
         <BrowserRouter>
           <div>
             <Menu />
-            {/* <Route
-              path="/learning"
-              render={props => <Learning {...props} data={this.state.data} dataRandom={this.state.dataRandom} />}
-            /> */}
             <Route
               path="/flashcard"
               render={props => <Flashcard {...props} data={this.state.data} dataRandom={this.state.dataRandom} />}
