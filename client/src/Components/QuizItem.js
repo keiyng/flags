@@ -42,6 +42,10 @@ class QuizItem extends Component {
         wrong: (prevState.wrong += 1)
       }));
     }
+    if (this.state.answered.length === this.state.continent.length) {
+      this.setState({ ended: true });
+      this.saveResults();
+    }
   }
 
   generateNext() {
@@ -52,9 +56,6 @@ class QuizItem extends Component {
         answered: [...prevState.answered, randomNext['name']],
         next: randomNext
       }));
-    } else if (this.state.answered.length === this.state.continent.length) {
-      this.setState({ ended: true });
-      this.saveResults();
     } else {
       this.generateNext();
     }
@@ -95,7 +96,6 @@ class QuizItem extends Component {
               generateNext={this.generateNext}
               correct={this.state.correct}
               wrong={this.state.wrong}
-              ended={this.state.ended}
             />
           </div>
         )}

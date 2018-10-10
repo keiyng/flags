@@ -79,37 +79,29 @@ class MultipleChoice extends Component {
   }
 
   checkAnswer() {
-    if (this.props.ended) {
-      console.log('ended!!!!');
-    } else {
-      // if submit button hasn't already been clicked once
-      if (this.state.selected !== '') {
-        if (this.state.selected !== this.props.answer) {
-          this.props.recordAnswer(false);
-          this.setState({ answered: true });
-        } else {
-          this.props.recordAnswer(true);
-          this.setState({ answered: true });
-        }
+    // if submit button hasn't already been clicked once
+    if (this.state.selected !== '') {
+      if (this.state.selected !== this.props.answer) {
+        this.props.recordAnswer(false);
+        this.setState({ answered: true });
       } else {
-        this.setState({
-          message: 'Please select and answer first'
-        });
+        this.props.recordAnswer(true);
+        this.setState({ answered: true });
       }
+    } else {
+      this.setState({
+        message: 'Please select an answer first'
+      });
     }
   }
 
   nextItem() {
-    if (this.props.ended) {
-      console.log('ended!!!!');
-    } else {
-      this.props.generateNext();
-      this.setState({
-        answered: false,
-        message: '',
-        selected: ''
-      });
-    }
+    this.props.generateNext();
+    this.setState({
+      answered: false,
+      message: '',
+      selected: ''
+    });
   }
 
   render() {
