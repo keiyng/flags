@@ -52,6 +52,7 @@ class Menu extends Component {
     }
   }
   render() {
+    console.log("this.props.auth:" + this.props.auth)
     return (
       <div>
         <div>

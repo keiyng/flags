@@ -73,7 +73,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    // should the browesr router be moved to app.js????
     return (
       <div>
         <BrowserRouter>

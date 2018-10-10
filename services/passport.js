@@ -23,11 +23,12 @@ passport.use(
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
+      const name = profile.displayName ? profile.displayName : profile.name.givenName;
       const existingUser = await User.findOne({ userID: profile.id });
       if (existingUser) {
         return done(null, existingUser);
       }
-      const user = await new User({ userID: profile.id }).save();
+      const user = await new User({ userID: profile.id, userName: name }).save();
       done(null, user);
     }
   )
