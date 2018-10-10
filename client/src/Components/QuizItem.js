@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import Flag from './Flag';
 import MultipleChoice from './MultipleChoice';
+import * as actions from '../actions';
 
 import _ from 'lodash';
+import { connect } from 'react-redux';
 
 class QuizItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       continent: this.props.continent,
+      continentName: this.props.continentName,
       wrong: 0,
       correct: 0,
       ended: false,
@@ -51,9 +54,24 @@ class QuizItem extends Component {
       }));
     } else if (this.state.answered.length === this.state.continent.length) {
       this.setState({ ended: true });
+      this.saveResults();
     } else {
       this.generateNext();
     }
+  }
+
+  saveResults() {
+    this.props.saveResults({
+      userID: this.props.auth.userID,
+      results: {
+        date: new Date(),
+        continent: this.state.continentName,
+        score:
+          this.state.correct.toString() +
+          '/' +
+          this.state.continent.length.toString()
+      }
+    });
   }
 
   render() {
@@ -63,7 +81,8 @@ class QuizItem extends Component {
           <div>
             <h2>End of Quiz</h2>
             <div>
-              You got {this.state.correct}/{this.state.continent.length} flags right!
+              You got {this.state.correct}/{this.state.continent.length} flags
+              right!
             </div>
           </div>
         ) : (
@@ -85,4 +104,11 @@ class QuizItem extends Component {
   }
 }
 
-export default QuizItem;
+function mapStateToProps({ auth, record }) {
+  return { auth, record };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(QuizItem);

@@ -113,8 +113,6 @@ class MultipleChoice extends Component {
   }
 
   render() {
-    console.log('answer:' + this.props.answer);
-
     return (
       <div>
         <ul>{this.displayChoices()}</ul>

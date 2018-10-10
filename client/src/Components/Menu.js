@@ -6,7 +6,7 @@ class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'Flashcard'
+      selected: undefined
     };
   }
 
@@ -52,13 +52,16 @@ class Menu extends Component {
     }
   }
   render() {
-    console.log("this.props.auth:" + this.props.auth)
     return (
       <div>
         <div>
+        {this.props.auth && <p>Hello, {this.props.auth.userName}!</p>}
           <ul>
             {this.modeMenu()}
             {this.authStatus()}
+            {this.props.auth && <li>
+              <Link to="/record">Your Attempts</Link>
+            </li>}
             <li>
               <Link to="/">Back</Link>
             </li>

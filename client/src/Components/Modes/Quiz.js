@@ -29,13 +29,22 @@ class Quiz extends Component {
   render() {
     return (
       <div>
-        {!this.state.inProgress && <Sidebar selected={this.state.current} onClick={this.handleClick} />}
+        {!this.state.inProgress && (
+          <Sidebar selected={this.state.current} onClick={this.handleClick} />
+        )}
         {this.state.current === '' ? (
           <p>choose a section first</p>
         ) : (
-          !this.state.inProgress && <button onClick={this.startQuiz}>Click to start</button>
+          !this.state.inProgress && (
+            <button onClick={this.startQuiz}>Click to start</button>
+          )
         )}
-        {this.state.inProgress && <QuizItem continent={this.props.data[this.state.current]}/>}
+        {this.state.inProgress && (
+          <QuizItem
+            continent={this.props.data[this.state.current]}
+            continentName={this.state.current}
+          />
+        )}
       </div>
     );
   }

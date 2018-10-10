@@ -5,6 +5,7 @@ import axios from 'axios';
 import Menu from './Menu';
 import Flashcard from './Modes/Flashcard';
 import Quiz from './Modes/Quiz';
+import Record from './Record';
 
 const CancelToken = axios.CancelToken;
 const source = CancelToken.source();
@@ -85,6 +86,10 @@ class Dashboard extends Component {
             <Route
               path="/quiz"
               render={props => <Quiz {...props} data={this.state.data} dataRandom={this.state.dataRandom} />}
+            />
+            <Route
+              path="/record"
+              render={props => <Record {...props} />}
             />
           </div>
         </BrowserRouter>
