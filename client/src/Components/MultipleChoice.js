@@ -108,12 +108,12 @@ class MultipleChoice extends Component {
     return (
       <div>
         <ul>{this.displayChoices()}</ul>
-        <p>{this.state.message}</p>
         {this.state.answered ? (
           <button onClick={this.nextItem}>Next Item</button>
         ) : (
           <button onClick={this.checkAnswer}>Click to Submit</button>
         )}
+        <p>{this.state.message}</p>
       </div>
     );
   }

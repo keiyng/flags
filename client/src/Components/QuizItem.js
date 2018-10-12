@@ -5,6 +5,7 @@ import * as actions from '../actions';
 
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class QuizItem extends Component {
   constructor(props) {
@@ -62,7 +63,7 @@ class QuizItem extends Component {
   }
 
   saveResults() {
-    this.props.saveResults({
+    axios.post('/api/save_results', {
       userID: this.props.auth.userID,
       results: {
         date: new Date(),
@@ -72,7 +73,7 @@ class QuizItem extends Component {
           '/' +
           this.state.continent.length.toString()
       }
-    });
+    })
   }
 
   render() {
@@ -104,8 +105,8 @@ class QuizItem extends Component {
   }
 }
 
-function mapStateToProps({ auth, record }) {
-  return { auth, record };
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
 export default connect(

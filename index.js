@@ -53,7 +53,6 @@ app.get('/api/logout', (req, res) => {
 });
 
 app.post('/api/save_results', async (req, res) => {
-  console.log(req.body);
   const userID = req.body.userID;
   const results = req.body.results;
 
