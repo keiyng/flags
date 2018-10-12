@@ -12,6 +12,7 @@ class MultipleChoice extends Component {
     };
     this.checkAnswer = this.checkAnswer.bind(this);
     this.nextItem = this.nextItem.bind(this);
+    this.seeResults = this.seeResults.bind(this);
   }
 
   componentDidMount() {
@@ -104,16 +105,27 @@ class MultipleChoice extends Component {
     });
   }
 
+  seeResults() {
+    this.props.showResults();
+  }
+
   render() {
     return (
       <div>
         <ul>{this.displayChoices()}</ul>
-        {this.state.answered ? (
+        {!this.props.ended && this.state.answered ? (
           <button onClick={this.nextItem}>Next Item</button>
         ) : (
           <button onClick={this.checkAnswer}>Click to Submit</button>
         )}
         <p>{this.state.message}</p>
+        {this.props.ended && (
+          <div>
+            <p>You've finished the quiz!</p>
+            <button onClick={this.seeResults}>See results</button>
+          </div>
+        )}
+
       </div>
     );
   }

@@ -18,11 +18,13 @@ class QuizItem extends Component {
       ended: false,
       answer: '',
       answered: [],
-      next: undefined
+      next: undefined,
+      showResults: false
     };
 
     this.recordAnswer = this.recordAnswer.bind(this);
     this.generateNext = this.generateNext.bind(this);
+    this.showResults = this.showResults.bind(this);
   }
 
   componentWillMount() {
@@ -45,7 +47,13 @@ class QuizItem extends Component {
     }
     if (this.state.answered.length === this.state.continent.length) {
       this.setState({ ended: true });
-      this.saveResults();
+      // save results for authenticated user
+      if (this.props.auth) {
+        this.saveResults();
+      } else {
+        return true;
+      }
+
     }
   }
 
@@ -76,10 +84,17 @@ class QuizItem extends Component {
     })
   }
 
+  showResults() {
+    this.setState({
+      showResults: true
+    })
+  }
+
   render() {
+    console.log(this.state.answered.length + "/" + this.state.continent.length)
     return (
       <div>
-        {this.state.ended ? (
+        {this.state.ended && this.state.showResults ? (
           <div>
             <h2>End of Quiz</h2>
             <div>
@@ -97,6 +112,8 @@ class QuizItem extends Component {
               generateNext={this.generateNext}
               correct={this.state.correct}
               wrong={this.state.wrong}
+              ended={this.state.ended}
+              showResults={this.showResults}
             />
           </div>
         )}
