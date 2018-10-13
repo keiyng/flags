@@ -74,7 +74,7 @@ class QuizItem extends Component {
     axios.post('/api/save_results', {
       userID: this.props.auth.userID,
       results: {
-        date: new Date(),
+        date: new Date().toDateString(),
         continent: this.state.continentName,
         score:
           this.state.correct.toString() +

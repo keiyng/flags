@@ -68,6 +68,13 @@ app.post('/api/save_results', async (req, res) => {
   }
 });
 
+app.get('/api/user_attempts', async(req, res) => {
+  const userAttempts = await User.findOne({userID: req.user.userID}, 'userAttempts');
+  res.send(userAttempts);
+  
+
+})
+
 if (process.env.NODE_ENV === 'production') {
   // express serves up production assets e.g. main.js
   app.use(express.static('client/build'));
