@@ -19,7 +19,9 @@ class QuizItem extends Component {
       answer: '',
       answered: [],
       next: undefined,
-      showResults: false
+      showResults: false,
+      message: '',
+      error: false
     };
 
     this.recordAnswer = this.recordAnswer.bind(this);
@@ -81,6 +83,15 @@ class QuizItem extends Component {
           '/' +
           this.state.continent.length.toString()
       }
+    }).then(res => {
+      this.setState({
+        message: res.data.message
+      })
+    }).catch(err => {
+      this.setState({
+        error: true
+      })
+      console.log(err)
     })
   }
 
@@ -100,6 +111,10 @@ class QuizItem extends Component {
             <div>
               You got {this.state.correct}/{this.state.continent.length} flags
               right!
+              <div>
+                {this.state.message}
+                {this.state.error ? 'An error has occured' : ''}
+              </div>
             </div>
           </div>
         ) : (

@@ -113,19 +113,21 @@ class MultipleChoice extends Component {
     return (
       <div>
         <ul>{this.displayChoices()}</ul>
-        {!this.props.ended && this.state.answered ? (
+        <p>{this.state.message}</p>
+        <div className={this.props.ended ? 'hide' : 'show'}>
+        {this.state.answered ? (
           <button onClick={this.nextItem}>Next Item</button>
         ) : (
           <button onClick={this.checkAnswer}>Click to Submit</button>
         )}
-        <p>{this.state.message}</p>
+        </div>
+
         {this.props.ended && (
           <div>
             <p>You've finished the quiz!</p>
             <button onClick={this.seeResults}>See results</button>
           </div>
         )}
-
       </div>
     );
   }

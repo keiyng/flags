@@ -17,9 +17,9 @@ class Record extends Component {
     axios
       .get('/api/user_attempts')
       .then(res => {
-        res.data.userAttempts.map(attempt => {
-          attempts.push(attempt);
-        });
+        for(let i=0; i<res.data.length; i++) {
+            attempts.push(res.data[i])
+        }
         this.setState({ attempts: attempts });
       })
       .catch(err => {
@@ -41,7 +41,6 @@ class Record extends Component {
         <div key={attempt._id}>
           <ul>
             <li>Date: {attempt.date}</li>
-            <li>Date: {typeof attempt.date}</li>
             <li>Continent: {attempt.continent}</li>
             <li>Score: {attempt.score}</li>
           </ul>

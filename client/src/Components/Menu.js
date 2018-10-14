@@ -55,13 +55,23 @@ class Menu extends Component {
     return (
       <div>
         <div>
-        {this.props.auth && <p>Hello, {this.props.auth.userName}!</p>}
+          {this.props.auth && <p>Hello, {this.props.auth.userName}!</p>}
           <ul>
             {this.modeMenu()}
             {this.authStatus()}
-            {this.props.auth && <li>
-              <Link to="/record">Your Attempts</Link>
-            </li>}
+            {this.props.auth && (
+              <li>
+                <Link
+                  to="/record"
+                  onClick={this.selectMode.bind(this, 'attempts')}
+                  className={
+                    this.state.selected === 'attempts' ? 'selected' : 'unselected'
+                  }
+                >
+                  Your Attempts
+                </Link>
+              </li>
+            )}
             <li>
               <Link to="/">Back</Link>
             </li>

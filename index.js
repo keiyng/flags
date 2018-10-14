@@ -62,16 +62,32 @@ app.post('/api/save_results', async (req, res) => {
   );
 
   if (user === null) {
-    res.json({ error: "user doesn't exist." });
+    res.send({message: 'Invalid user; results cannot be saved.'});
   } else {
-    res.json({ success: 'record has been updated.' });
+    let attempts = user.userAttempts;
+
+    if (attempts.length > 10) {
+      await User.findOneAndUpdate(
+        { userID: userID },
+        { $pop: { userAttempts: -1 } }
+      );
+      return res.send({message: 'Results have been saved.'})
+    }
+
+    res.send({message: 'Results have been saved.'})
   }
 });
 
 app.get('/api/user_attempts', async(req, res) => {
-  const userAttempts = await User.findOne({userID: req.user.userID}, 'userAttempts');
-  res.send(userAttempts);
-  
+  const user = await User.findOne({userID: req.user.userID});
+  let attempts = user.userAttempts;
+
+  // if (attempts.length > 10) {
+  //   attempts.shift();
+  //   await User.findOneAndUpdate({userID: req.user.userID}, {userAttempts: attempts})
+  //   return res.send(attempts)
+  // }
+  res.send(attempts);
 
 })
 
