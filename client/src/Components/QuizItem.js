@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Flag from './Flag';
 import MultipleChoice from './MultipleChoice';
+import Review from './Review';
 import * as actions from '../actions';
 
 import _ from 'lodash';
@@ -21,7 +22,8 @@ class QuizItem extends Component {
       next: undefined,
       showResults: false,
       message: '',
-      error: false
+      error: false,
+      review: []
     };
 
     this.recordAnswer = this.recordAnswer.bind(this);
@@ -38,14 +40,14 @@ class QuizItem extends Component {
   }
 
   recordAnswer(choice) {
-    this.saveResults();
     if (choice) {
       this.setState(prevState => ({
         correct: prevState.correct + 1
       }));
     } else {
       this.setState(prevState => ({
-        wrong: (prevState.wrong += 1)
+        wrong: (prevState.wrong += 1),
+        review: [...prevState.review, this.state.next['name']]
       }));
     }
     if (this.state.answered.length === this.state.continent.length) {
@@ -56,7 +58,6 @@ class QuizItem extends Component {
       } else {
         return true;
       }
-
     }
   }
 
@@ -74,36 +75,37 @@ class QuizItem extends Component {
   }
 
   saveResults() {
-    axios.post('/api/save_results', {
-      // userID: this.props.auth.userID,
-      // results: {
+    axios
+      .post('/api/save_results', {
         date: new Date().toDateString(),
         continent: this.state.continentName,
         score:
           this.state.correct.toString() +
           '/' +
           this.state.continent.length.toString()
-      // }
-    }).then(res => {
-      this.setState({
-        message: res.data.message
       })
-    }).catch(err => {
-      this.setState({
-        error: true
+      .then(res => {
+        this.setState({
+          message: res.data.message
+        });
       })
-      console.log(err)
-    })
+      .catch(err => {
+        this.setState({
+          error: true
+        });
+        console.log(err);
+      });
   }
 
   showResults() {
     this.setState({
       showResults: true
-    })
+    });
   }
 
   render() {
-    console.log(this.state.answered.length + "/" + this.state.continent.length)
+    console.log(this.state.answered.length + '/' + this.state.continent.length);
+    // console.log("review::" + this.state.review)
     return (
       <div>
         {this.state.ended && this.state.showResults ? (
@@ -131,6 +133,7 @@ class QuizItem extends Component {
               ended={this.state.ended}
               showResults={this.showResults}
             />
+            <Review review={this.state.review} />
           </div>
         )}
       </div>

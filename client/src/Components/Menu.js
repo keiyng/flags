@@ -26,7 +26,7 @@ class Menu extends Component {
             onClick={this.selectMode.bind(this, mode)}
             className={this.state.selected === mode ? 'selected' : 'unselected'}
           >
-            {mode} Mode
+            {mode}
           </Link>
         </li>
       );

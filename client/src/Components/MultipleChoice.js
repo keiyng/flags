@@ -84,14 +84,13 @@ class MultipleChoice extends Component {
     if (this.state.selected !== '') {
       if (this.state.selected !== this.props.answer) {
         this.props.recordAnswer(false);
-        this.setState({ answered: true });
       } else {
         this.props.recordAnswer(true);
-        this.setState({ answered: true });
       }
+      this.setState({ answered: true });
     } else {
       this.setState({
-        message: 'Please select an answer first'
+        message: 'Please select an answer'
       });
     }
   }
