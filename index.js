@@ -53,11 +53,10 @@ app.get('/api/logout', (req, res) => {
 });
 
 app.post('/api/save_results', async (req, res) => {
-  const userID = req.body.userID;
-  const results = req.body.results;
+  const results = req.body;
 
   const user = await User.findOneAndUpdate(
-    { userID: userID },
+    { userID: req.user.userID },
     { $push: { userAttempts: results } }
   );
 
@@ -68,7 +67,7 @@ app.post('/api/save_results', async (req, res) => {
 
     if (attempts.length > 10) {
       await User.findOneAndUpdate(
-        { userID: userID },
+        { userID: req.user.userID },
         { $pop: { userAttempts: -1 } }
       );
       return res.send({message: 'Results have been saved.'})
@@ -79,16 +78,7 @@ app.post('/api/save_results', async (req, res) => {
 });
 
 app.get('/api/user_attempts', async(req, res) => {
-  const user = await User.findOne({userID: req.user.userID});
-  let attempts = user.userAttempts;
-
-  // if (attempts.length > 10) {
-  //   attempts.shift();
-  //   await User.findOneAndUpdate({userID: req.user.userID}, {userAttempts: attempts})
-  //   return res.send(attempts)
-  // }
-  res.send(attempts);
-
+  res.send(req.user.userAttempts);
 })
 
 if (process.env.NODE_ENV === 'production') {

@@ -38,6 +38,7 @@ class QuizItem extends Component {
   }
 
   recordAnswer(choice) {
+    this.saveResults();
     if (choice) {
       this.setState(prevState => ({
         correct: prevState.correct + 1
@@ -74,15 +75,15 @@ class QuizItem extends Component {
 
   saveResults() {
     axios.post('/api/save_results', {
-      userID: this.props.auth.userID,
-      results: {
+      // userID: this.props.auth.userID,
+      // results: {
         date: new Date().toDateString(),
         continent: this.state.continentName,
         score:
           this.state.correct.toString() +
           '/' +
           this.state.continent.length.toString()
-      }
+      // }
     }).then(res => {
       this.setState({
         message: res.data.message
