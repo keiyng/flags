@@ -104,8 +104,8 @@ class QuizItem extends Component {
   }
 
   render() {
-    console.log(this.state.answered.length + '/' + this.state.continent.length);
-    // console.log("review::" + this.state.review)
+    // console.log(this.state.answered.length + '/' + this.state.continent.length);
+
     return (
       <div>
         {this.state.ended && this.state.showResults ? (
@@ -118,6 +118,13 @@ class QuizItem extends Component {
                 {this.state.message}
                 {this.state.error ? 'An error has occured' : ''}
               </div>
+              <div>
+                Let's review what you got wrong:
+              <Review
+              review={this.state.review}
+              continent={this.state.continent}
+            />
+            </div>
             </div>
           </div>
         ) : (
@@ -133,7 +140,6 @@ class QuizItem extends Component {
               ended={this.state.ended}
               showResults={this.showResults}
             />
-            <Review review={this.state.review} />
           </div>
         )}
       </div>
