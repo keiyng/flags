@@ -8,6 +8,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+
 class QuizItem extends Component {
   constructor(props) {
     super(props);
@@ -105,7 +106,6 @@ class QuizItem extends Component {
 
   render() {
     // console.log(this.state.answered.length + '/' + this.state.continent.length);
-
     return (
       <div>
         {this.state.ended && this.state.showResults ? (
@@ -120,11 +120,11 @@ class QuizItem extends Component {
               </div>
               <div>
                 Let's review what you got wrong:
-              <Review
-              review={this.state.review}
-              continent={this.state.continent}
-            />
-            </div>
+                <Review
+                  review={this.state.review}
+                  continent={this.state.continent}
+                />
+              </div>
             </div>
           </div>
         ) : (
@@ -142,6 +142,7 @@ class QuizItem extends Component {
             />
           </div>
         )}
+
       </div>
     );
   }

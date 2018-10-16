@@ -19,17 +19,30 @@ class Menu extends Component {
   modeMenu() {
     const modes = ['Flashcard', 'Quiz'];
     return modes.map(mode => {
-      return (
-        <li key={mode}>
-          <Link
-            to={`/${mode}`}
-            onClick={this.selectMode.bind(this, mode)}
+      if (this.state.selected === mode) {
+        return (
+          <button
+            key={mode}
             className={this.state.selected === mode ? 'selected' : 'unselected'}
           >
             {mode}
-          </Link>
-        </li>
-      );
+          </button>
+        );
+      } else {
+        return (
+          <button key={mode} type="button">
+            <Link
+              to={`/${mode}`}
+              onClick={this.selectMode.bind(this, mode)}
+              className={
+                this.state.selected === mode ? 'selected' : 'unselected'
+              }
+            >
+              {mode}
+            </Link>
+          </button>
+        );
+      }
     });
   }
 
@@ -39,15 +52,15 @@ class Menu extends Component {
         return;
       case false:
         return (
-          <li>
+          <button>
             <a href="/auth/google">Sign in with Google</a>
-          </li>
+          </button>
         );
       default:
         return (
-          <li>
+          <button>
             <a href="/api/logout">Logout</a>
-          </li>
+          </button>
         );
     }
   }
@@ -56,26 +69,24 @@ class Menu extends Component {
       <div>
         <div>
           {this.props.auth && <p>Hello, {this.props.auth.userName}!</p>}
-          <ul>
-            {this.modeMenu()}
-            {this.authStatus()}
-            {this.props.auth && (
-              <li>
-                <Link
-                  to="/record"
-                  onClick={this.selectMode.bind(this, 'attempts')}
-                  className={
-                    this.state.selected === 'attempts' ? 'selected' : 'unselected'
-                  }
-                >
-                  Your Attempts
-                </Link>
-              </li>
-            )}
-            <li>
-              <Link to="/">Back</Link>
-            </li>
-          </ul>
+          {this.modeMenu()}
+          {this.authStatus()}
+          {this.props.auth && (
+            <button>
+              <Link
+                to="/record"
+                onClick={this.selectMode.bind(this, 'attempts')}
+                className={
+                  this.state.selected === 'attempts' ? 'selected' : 'unselected'
+                }
+              >
+                Your Attempts
+              </Link>
+            </button>
+          )}
+          <button>
+            <Link to="/">Home</Link>
+          </button>
         </div>
       </div>
     );
