@@ -85,7 +85,15 @@ class Menu extends Component {
             </button>
           )}
           <button>
-            <Link to="/">Home</Link>
+            <Link
+              to="/"
+              onClick={this.selectMode.bind(this, 'home')}
+              className={
+                this.state.selected === 'home' ? 'selected' : 'unselected'
+              }
+            >
+              Home
+            </Link>
           </button>
         </div>
       </div>

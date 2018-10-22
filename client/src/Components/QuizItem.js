@@ -8,7 +8,6 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-
 class QuizItem extends Component {
   constructor(props) {
     super(props);
@@ -53,6 +52,7 @@ class QuizItem extends Component {
     }
     if (this.state.answered.length === this.state.continent.length) {
       this.setState({ ended: true });
+      this.props.endQuiz();
       // save results for authenticated user
       if (this.props.auth) {
         this.saveResults();
@@ -73,6 +73,10 @@ class QuizItem extends Component {
     } else {
       this.generateNext();
     }
+  }
+
+  endQuiz() {
+
   }
 
   saveResults() {
@@ -105,7 +109,6 @@ class QuizItem extends Component {
   }
 
   render() {
-    // console.log(this.state.answered.length + '/' + this.state.continent.length);
     return (
       <div>
         {this.state.ended && this.state.showResults ? (

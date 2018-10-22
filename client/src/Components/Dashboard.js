@@ -74,6 +74,7 @@ class Dashboard extends Component {
   }
 
   render() {
+
     return (
       <div>
         <BrowserRouter>
@@ -85,11 +86,11 @@ class Dashboard extends Component {
             />
             <Route
               path="/quiz"
-              render={props => <Quiz {...props} data={this.state.data} dataRandom={this.state.dataRandom} />}
+              render={props => <Quiz {...props} data={this.state.data} />}
             />
             <Route
               path="/record"
-              render={props => <Record {...props} />}
+              component={Record}
             />
           </div>
         </BrowserRouter>
