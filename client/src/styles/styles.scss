@@ -1,0 +1,39 @@
+@import './reset/basic-reset';
+
+ul {
+  list-style-type: none;
+}
+
+.flashcardsContainer {
+  width: 100vw;
+
+  .flashcard {
+    float: left;
+    margin: 10px;
+    margin-bottom: 50px;
+    background-color: #e5e5e5;
+    text-align: center;
+    width: 220px;
+    height: 120px;
+  }
+}
+
+.answer {
+  color: green;
+}
+
+.selected {
+  color: blue;
+}
+
+.unselected {
+  color: black;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}

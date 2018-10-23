@@ -9,7 +9,7 @@ class Quiz extends Component {
     this.state = {
       current: '',
       inProgress: false,
-      ended: false
+      ended: undefined
     };
     this.handleClick = this.handleClick.bind(this);
     this.startQuiz = this.startQuiz.bind(this);

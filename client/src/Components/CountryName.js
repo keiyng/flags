@@ -2,11 +2,11 @@ import React from 'react';
 
 const CountryName = ({ country }) => {
   return (
-    <React.Fragment>
-      <p>
+    <div className="countryName">
+      <div>
         {country.name} ({country.code})
-      </p>
-    </React.Fragment>
+      </div>
+    </div>
   );
 };
 

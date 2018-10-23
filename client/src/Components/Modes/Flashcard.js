@@ -21,7 +21,7 @@ class Flashcard extends Component {
     }));
   }
 
-  showName (countryName) {
+  showName(countryName) {
     if (this.state.show.includes(countryName)) {
       let show = this.state.show.slice();
       const index = show.indexOf(countryName);
@@ -46,15 +46,13 @@ class Flashcard extends Component {
     return continentList.map(country => {
       return (
         <div
-          className="content"
+          className="flashcard"
           onClick={() => this.showName(country.name)}
           key={country.name}
         >
           <Flag key={country.flag} country={country} />
           {this.state.show.includes(country.name) && (
-            <div className="flashcardName">
-              <CountryName key={country.name} country={country} />
-            </div>
+            <CountryName key={country.name} country={country} />
           )}
         </div>
       );
@@ -71,11 +69,13 @@ class Flashcard extends Component {
           {this.state.random ? 'alphabetical order' : 'random order'}
         </button>
         <Sidebar selected={this.state.current} onClick={this.handleClick} />
+        <div className="flashcardsContainer">
         {data[this.state.current] &&
           this.renderContent(
             data[this.state.current],
             dataRandom[this.state.current]
           )}
+        </div>
       </div>
     );
   }

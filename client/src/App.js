@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from './actions';
 
 import Dashboard from './Components/Dashboard';
-import './App.css';
+import './styles/styles.scss';
 
 
 class App extends Component {
