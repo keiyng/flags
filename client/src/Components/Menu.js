@@ -25,7 +25,7 @@ class Menu extends Component {
             key={mode}
             className={this.state.selected === mode ? 'selected' : 'unselected'}
           >
-            {mode}
+            {mode === 'Flashcard' ? `Learn with ${mode}s` : `Take the ${mode}`}
           </button>
         );
       } else {
@@ -38,7 +38,7 @@ class Menu extends Component {
                 this.state.selected === mode ? 'selected' : 'unselected'
               }
             >
-              {mode}
+              {mode === 'Flashcard' ? `Learn with ${mode}s` : `Take the ${mode}`}
             </Link>
           </button>
         );
@@ -67,8 +67,7 @@ class Menu extends Component {
   render() {
     return (
       <div>
-        <div>
-          {this.props.auth && <p>Hello, {this.props.auth.userName}!</p>}
+        <div className="menu">
           {this.modeMenu()}
           {this.authStatus()}
           {this.props.auth && (
@@ -95,6 +94,9 @@ class Menu extends Component {
               Home
             </Link>
           </button>
+        </div>
+        <div>
+          {this.props.auth && <p>Hello, {this.props.auth.userName}!</p>}
         </div>
       </div>
     );

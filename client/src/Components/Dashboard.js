@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import axios from 'axios';
 
+import Header from './Header';
 import Menu from './Menu';
 import Flashcard from './Modes/Flashcard';
 import Quiz from './Modes/Quiz';
@@ -79,6 +80,7 @@ class Dashboard extends Component {
       <div>
         <BrowserRouter>
           <div>
+            <Header />
             <Menu />
             <Route
               path="/flashcard"

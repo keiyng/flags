@@ -1,7 +1,18 @@
 @import './reset/basic-reset';
 
+body {
+    padding: 30px;
+}
+
 ul {
   list-style-type: none;
+}
+
+.menu {
+  button {
+    margin: 8px;
+    padding: 5px;
+  }
 }
 
 .flashcardsContainer {
@@ -14,7 +25,14 @@ ul {
     background-color: #e5e5e5;
     text-align: center;
     width: 220px;
-    height: 120px;
+    height: 180px;
+    padding-top: 14px;
+    border-radius: 4px;
+  }
+
+  .flag {
+      margin-bottom: 6px;
+    //   background-color: red;
   }
 }
 
