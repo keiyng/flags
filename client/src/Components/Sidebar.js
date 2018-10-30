@@ -17,7 +17,7 @@ const Sidebar = props => {
   });
   
   return (
-    <div>
+    <div id="sidebar">
       <ul>{continentsList}</ul>
     </div>
   );

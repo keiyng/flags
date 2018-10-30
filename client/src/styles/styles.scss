@@ -1,39 +1,113 @@
 @import './reset/basic-reset';
 
+$dark-gray: #595959;
+
 body {
-    padding: 30px;
+  padding: 50px;
+  overflow-x: hidden;
+  font-family: 'Rosario', Arial;
 }
 
 ul {
   list-style-type: none;
 }
 
-.menu {
+#header{
+  text-align: center;
+  text-shadow: 1px 1px gray;
+  font-family: 'Lato', sans-serif;
+  // background-color: red;
+  margin-top: -40px;
+
+  h1 {
+    font-size: 36px;
+  }
+
+}
+
+#menu {
+  // background-color: yellow;
+  display: flex;
+  // align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  padding: 5px;
+
   button {
     margin: 8px;
-    padding: 5px;
+    margin-bottom: 3px;
+    padding: 6px;
+    background-color: #F3F3F3;
+    border-radius: 5px;
+    font-size: 18px;
+
+    a {
+      text-decoration: none;
+      color: $dark-gray;
+
+      &:hover {
+        color: black;
+      }
+    }
+    &:hover {
+      background-color: white;
+    }
   }
 }
 
-.flashcardsContainer {
-  width: 100vw;
+#greeting {
+  // background-color: red;
+  text-align: right;
+  width: 80vw;
+  // display: flex;
+  // align-items: flex-end;
+}
 
-  .flashcard {
-    float: left;
-    margin: 10px;
-    margin-bottom: 50px;
-    background-color: #e5e5e5;
-    text-align: center;
-    width: 220px;
-    height: 180px;
-    padding-top: 14px;
-    border-radius: 4px;
+.switch {
+  // background-color: red;
+  margin-bottom: 10px;
+  span {
+    margin-right: 14px;
+    font-size: 12px;
   }
+}
 
-  .flag {
-      margin-bottom: 6px;
-    //   background-color: red;
+#sidebar {
+  // background-color: red;
+}
+
+#flashcard {
+  display: flex;
+
+  .flashcardsContainer {
+    width: 100vw;
+    margin-left: 20px;
+  
+    .flashcardContent {
+      float: left;
+      margin: 10px;
+      margin-bottom: 50px;
+      background-color: #e5e5e5;
+      text-align: center;
+      width: 220px;
+      height: 180px;
+      padding-top: 14px;
+      border-radius: 4px;
+    }
+  
+    .flag {
+        margin-bottom: 6px;
+    }
   }
+}
+
+
+
+.content {
+  float: left;
+  margin: 10px;
+  background-color: #e5e5e5;
+  text-align: center
 }
 
 .answer {
@@ -41,7 +115,7 @@ ul {
 }
 
 .selected {
-  color: blue;
+  font-weight: bold;
 }
 
 .unselected {

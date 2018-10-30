@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Sidebar from '../Sidebar';
 import Flag from '../Flag';
 import CountryName from '../CountryName';
+import 'materialize-css/dist/css/materialize.min.css';
 
 class Flashcard extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Flashcard extends Component {
     return continentList.map(country => {
       return (
         <div
-          className="flashcard"
+          className="flashcardContent"
           onClick={() => this.showName(country.name)}
           key={country.name}
         >
@@ -65,17 +66,31 @@ class Flashcard extends Component {
 
     return (
       <div>
-        <button onClick={this.toggleOrder}>
+        {/* <button onClick={this.toggleOrder}>
           {this.state.random ? 'alphabetical order' : 'random order'}
-        </button>
+        </button> */}
+
+        <div class="switch">
+          <span>Random Order</span>
+          <label>
+            Off
+            <input type="checkbox" />
+            <span class="lever" onClick={this.toggleOrder} />
+            On
+          </label>
+        </div>
+
+        <div id="flashcard">
         <Sidebar selected={this.state.current} onClick={this.handleClick} />
         <div className="flashcardsContainer">
-        {data[this.state.current] &&
-          this.renderContent(
-            data[this.state.current],
-            dataRandom[this.state.current]
-          )}
+          {data[this.state.current] &&
+            this.renderContent(
+              data[this.state.current],
+              dataRandom[this.state.current]
+            )}
         </div>
+        </div>
+
       </div>
     );
   }

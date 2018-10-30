@@ -67,9 +67,9 @@ class Menu extends Component {
   render() {
     return (
       <div>
-        <div className="menu">
+        <div id="menu">
           {this.modeMenu()}
-          {this.authStatus()}
+          
           {this.props.auth && (
             <button>
               <Link
@@ -83,6 +83,9 @@ class Menu extends Component {
               </Link>
             </button>
           )}
+
+          {this.authStatus()}
+          
           <button>
             <Link
               to="/"
@@ -94,8 +97,9 @@ class Menu extends Component {
               Home
             </Link>
           </button>
+          
         </div>
-        <div>
+        <div id="greeting">
           {this.props.auth && <p>Hello, {this.props.auth.userName}!</p>}
         </div>
       </div>
