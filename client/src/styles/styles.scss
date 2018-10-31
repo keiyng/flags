@@ -1,9 +1,11 @@
 @import './reset/basic-reset';
 
 $dark-gray: #595959;
+$gray: #e5e5e5;
 
 body {
-  padding: 50px;
+  padding: 50px 10px 50px 20px;
+  padding-right: 10px;
   overflow-x: hidden;
   font-family: 'Rosario', Arial;
 }
@@ -23,6 +25,14 @@ ul {
     font-size: 36px;
   }
 
+}
+
+.selected {
+  font-weight: bold;
+}
+
+.unselected {
+  color: black;
 }
 
 #menu {
@@ -57,10 +67,8 @@ ul {
 
 #greeting {
   // background-color: red;
-  text-align: right;
-  width: 80vw;
-  // display: flex;
-  // align-items: flex-end;
+  text-align: left;
+
 }
 
 .switch {
@@ -74,53 +82,55 @@ ul {
 
 #sidebar {
   // background-color: red;
+
+  li {
+    margin: 10px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .selected {
+    font-size: larger;
+  }
 }
 
 #flashcard {
   display: flex;
+  justify-content: center;
+  flex-flow: row;
 
   .flashcardsContainer {
     width: 100vw;
     margin-left: 20px;
+    background-color: $gray;
   
     .flashcardContent {
       float: left;
       margin: 10px;
-      margin-bottom: 50px;
-      background-color: #e5e5e5;
+      margin-bottom: 40px;
+      background-color: #F4F4F4;
+      border: 1px solid $dark-gray;
       text-align: center;
       width: 220px;
-      height: 180px;
-      padding-top: 14px;
+      height: 200px;
+      padding: 6px;
       border-radius: 4px;
-    }
-  
-    .flag {
-        margin-bottom: 6px;
+
+      span {
+        font-size: 24px;
+        opacity: .3;
+      }
     }
   }
 }
 
 
-
-.content {
-  float: left;
-  margin: 10px;
-  background-color: #e5e5e5;
-  text-align: center
-}
-
 .answer {
   color: green;
 }
 
-.selected {
-  font-weight: bold;
-}
 
-.unselected {
-  color: black;
-}
 
 .hide {
   display: none;

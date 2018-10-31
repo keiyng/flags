@@ -52,9 +52,9 @@ class Flashcard extends Component {
           key={country.name}
         >
           <Flag key={country.flag} country={country} />
-          {this.state.show.includes(country.name) && (
+          {this.state.show.includes(country.name) ? (
             <CountryName key={country.name} country={country} />
-          )}
+          ) : <span>?</span>}
         </div>
       );
     });
