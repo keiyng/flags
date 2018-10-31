@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Header from './Header';
 import Menu from './Menu';
+import Home from './Home';
 import Flashcard from './Modes/Flashcard';
 import Quiz from './Modes/Quiz';
 import Record from './Record';
@@ -32,7 +33,9 @@ class Dashboard extends Component {
     };
 
     axios
-      .get('https://restcountries.eu/rest/v2/all', {cancelToken: source.token})
+      .get('https://restcountries.eu/rest/v2/all', {
+        cancelToken: source.token
+      })
       .then(res => {
         for (let i = 0; i < res.data.length; i++) {
           dataObj['All'].push({
@@ -41,7 +44,7 @@ class Dashboard extends Component {
             flag: res.data[i].flag,
             code: res.data[i].alpha2Code
           });
-          
+
           if (Object.keys(dataObj).includes(res.data[i].region)) {
             dataObj[res.data[i].region].push({
               name: res.data[i].name,
@@ -58,45 +61,48 @@ class Dashboard extends Component {
 
         for (let item in dataRandom) {
           dataRandom[item].sort((a, b) => {
-                return 0.5 - Math.random();
-            });
+            return 0.5 - Math.random();
+          });
         }
         this.setState({ data: data, dataRandom: dataRandom });
-
       })
       .catch(err => {
         if (axios.isCancel(err)) {
-          console.log('request is cancelled:', err.message)
-        }
-        else if (err.response.status !== 200) {
-          this.setState({error: true})
+          console.log('request is cancelled:', err.message);
+        } else if (err.response.status !== 200) {
+          this.setState({ error: true });
         }
       });
   }
 
   render() {
-
     return (
-      <div>
+      <div id="dashboard">
         <BrowserRouter>
           <div>
             <Header />
             <Menu />
+            <Route path="/" component={Home} exact/>
             <Route
               path="/flashcard"
-              render={props => <Flashcard {...props} data={this.state.data} dataRandom={this.state.dataRandom} />}
+              render={props => (
+                <Flashcard
+                  {...props}
+                  data={this.state.data}
+                  dataRandom={this.state.dataRandom}
+                />
+              )}
             />
             <Route
               path="/quiz"
               render={props => <Quiz {...props} data={this.state.data} />}
             />
-            <Route
-              path="/record"
-              component={Record}
-            />
+            <Route path="/record" component={Record} />
           </div>
         </BrowserRouter>
-        {this.state.error && <p>There is an error fetching the content. Please try again. </p>}
+        {this.state.error && (
+          <p>There is an error fetching the content. Please try again. </p>
+        )}
       </div>
     );
   }

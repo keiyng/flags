@@ -84,6 +84,11 @@ ul {
 
 }
 
+#spinningEarth {
+    margin-top: 20px;
+    @include flex-centered;
+}
+
 .switch {
   // background-color: red;
   margin-bottom: 10px;

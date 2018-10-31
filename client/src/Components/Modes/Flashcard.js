@@ -66,12 +66,12 @@ class Flashcard extends Component {
 
     return (
       <div>
-        <div class="switch">
+        <div className="switch">
           <span>Random Order</span>
           <label>
             Off
             <input type="checkbox" />
-            <span class="lever" onClick={this.toggleOrder} />
+            <span className="lever" onClick={this.toggleOrder} />
             On
           </label>
         </div>
