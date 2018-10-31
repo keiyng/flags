@@ -2,6 +2,18 @@
 
 $dark-gray: #595959;
 $gray: #e5e5e5;
+$dark-green: #327F7A;
+
+@mixin flex-centered {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin pointer {
+  &:hover {
+    cursor: pointer;
+  }
+}
 
 body {
   padding: 50px 10px 50px 20px;
@@ -36,10 +48,11 @@ ul {
 }
 
 #menu {
+  @include flex-centered;
   // background-color: yellow;
-  display: flex;
+  // display: flex;
   // align-items: center;
-  justify-content: center;
+  // justify-content: center;
   flex-flow: row wrap;
   padding: 5px;
 
@@ -80,30 +93,29 @@ ul {
   }
 }
 
-#sidebar {
+.sidebar {
   // background-color: red;
 
   li {
     margin: 10px;
-    &:hover {
-      cursor: pointer;
-    }
+    @include pointer;
   }
 
   .selected {
     font-size: larger;
+    text-decoration: underline;
   }
 }
 
 #flashcard {
-  display: flex;
-  justify-content: center;
+  @include flex-centered;
   flex-flow: row;
 
   .flashcardsContainer {
     width: 100vw;
     margin-left: 20px;
     background-color: $gray;
+    padding-left: 14px;
   
     .flashcardContent {
       float: left;
@@ -120,14 +132,109 @@ ul {
       span {
         font-size: 24px;
         opacity: .3;
+        @include pointer;
       }
     }
   }
+
+  .flag {
+    @include pointer;
+  }
 }
 
+#quiz {
+
+  @include flex-centered;
+  
+  .sidebar {
+    margin-top: 20px;
+    font-size: 20px;
+    width: 30vw;
+
+    ul {
+      @include flex-centered;
+      flex-flow: row wrap;
+
+      li {
+        border: 1px solid $dark-gray;
+        border-radius: 3px;
+        background-color: $dark-green;
+        color: white;
+        padding: 5px;
+        padding-top: 44px;
+        width: 120px;
+        height: 120px;
+        // text-justify: round;
+        text-align: center;
+      }
+    }
+  
+    .selected {
+      text-decoration: none;
+      font-size: inherit;
+      background-color: white;
+      color: black;
+      border: 3px solid $dark-gray;
+      font-weight: inherit;
+
+    }
+  }
+
+  #startQuiz {
+    text-align: center;
+
+    button {
+      padding: 4px;
+      background-color: white;
+      @include pointer;
+    }
+  }
+
+  .flag {
+    margin-top: 20px;
+    background-color: #F9F9F9;
+    padding: 10px;
+    border: 1px solid $dark-gray;
+    border-radius: 3px;
+  }
+
+  #multipleChoice {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 20px;
+
+    button {
+      margin-top: 20px;
+      padding: 4px;
+      background-color: white;
+      @include pointer;
+    }
+
+    li {
+      @include pointer;
+      margin: 4px;
+
+      span {
+        padding: 6px;
+      }
+    }
+
+    .selected {
+      border-radius: 3px;
+      background-color: $dark-green;
+      color: white;
+      font-weight: inherit;
+
+    }
+  }
+
+}
 
 .answer {
-  color: green;
+  border-radius: 3px;
+  background-color: red;
+  color: white;
+  font-weight: inherit;
 }
 
 

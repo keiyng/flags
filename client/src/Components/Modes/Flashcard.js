@@ -51,7 +51,7 @@ class Flashcard extends Component {
           onClick={() => this.showName(country.name)}
           key={country.name}
         >
-          <Flag key={country.flag} country={country} />
+          <Flag key={country.flag} country={country} width={"200vw"} height={"140vh"} />
           {this.state.show.includes(country.name) ? (
             <CountryName key={country.name} country={country} />
           ) : <span>?</span>}
@@ -66,10 +66,6 @@ class Flashcard extends Component {
 
     return (
       <div>
-        {/* <button onClick={this.toggleOrder}>
-          {this.state.random ? 'alphabetical order' : 'random order'}
-        </button> */}
-
         <div class="switch">
           <span>Random Order</span>
           <label>

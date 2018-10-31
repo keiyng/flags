@@ -29,7 +29,7 @@ class MultipleChoice extends Component {
     } else if (nextProps.correct !== this.props.correct) {
       this.setState({ message: 'correct!' });
     } else if (nextProps.wrong !== this.props.wrong) {
-      this.setState({ message: 'wrong!' });
+      this.setState({ message: `Oops! This is the flag of ${this.props.answer}` });
     }
   }
 
@@ -51,23 +51,24 @@ class MultipleChoice extends Component {
     const choices = this.state.choices.slice();
     return choices.sort().map(choice => {
       return (
-        <div key={choice}>
+        <div key={choice} className="choices">
           {!this.state.answered ? (
             <li
               value={choice}
-              className={
-                choice === this.state.selected ? 'selected' : 'unselected'
-              }
               onClick={this.selectAnswer.bind(this, choice)}
             >
-              {choice}
+              <span className={
+                choice === this.state.selected ? 'selected' : 'unselected'
+              }>{choice}</span>
             </li>
           ) : (
             <li
               value={choice}
-              className={choice === this.props.answer ? 'answer' : 'unselected'}
+              // className={choice === this.props.answer ? 'answer' : 'unselected'}
             >
-              {choice}
+              <span className={
+                choice === this.props.answer ? 'answer' : 'unselected'
+              }>{choice}</span>
             </li>
           )}
         </div>
@@ -110,15 +111,15 @@ class MultipleChoice extends Component {
 
   render() {
     return (
-      <div>
+      <div id="multipleChoice">
         <ul>{this.displayChoices()}</ul>
-        <p>{this.state.message}</p>
         <div className={this.props.ended ? 'hide' : 'show'}>
         {this.state.answered ? (
           <button onClick={this.nextItem}>Next Item</button>
         ) : (
-          <button onClick={this.checkAnswer}>Click to Submit</button>
+          <button onClick={this.checkAnswer}>Submit</button>
         )}
+        <p className="message">{this.state.message}</p>
         </div>
 
         {this.props.ended && (

@@ -27,35 +27,40 @@ class Quiz extends Component {
   }
 
   endQuiz() {
-    this.setState({ended: true})
+    this.setState({ ended: true });
   }
 
   render() {
     return (
-      <div>
-        {!this.state.inProgress && (
+      <div id="quiz">
+      <div id="quizContainer">
+      <div id="quizContent">
+        {!this.state.inProgress ? (
           <Sidebar selected={this.state.current} onClick={this.handleClick} />
-        )}
-
-        {this.state.current === '' ? (
-          <p>Please choose a section</p>
         ) : (
-          !this.state.inProgress && (
-            <button onClick={this.startQuiz}>Click to start</button>
-          )
-        )}
-
-        {this.state.inProgress && (
           <QuizItem
             continent={this.props.data[this.state.current]}
             continentName={this.state.current}
             endQuiz={this.endQuiz}
           />
         )}
+        </div>
+
+        <div id="startQuiz">
+          {this.state.current === '' ? (
+            <p>Choose a section to begin</p>
+          ) : (
+            !this.state.inProgress && (
+              <button onClick={this.startQuiz}>Click here to start</button>
+            )
+          )}
+        </div>
+
         <Prompt
           when={!this.state.ended}
           message="Are you sure you want to leave the quiz? Your progress will be lost."
         />
+        </div>
       </div>
     );
   }

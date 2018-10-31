@@ -132,7 +132,7 @@ class QuizItem extends Component {
           </div>
         ) : (
           <div>
-            <Flag country={this.state.next} />
+            <Flag country={this.state.next} width="400vw" height="240vh"/>
             <MultipleChoice
               continent={this.state.continent}
               answer={this.state.next['name']}

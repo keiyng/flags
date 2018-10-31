@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Flag = ({ country }) => {
+const Flag = ({ country, width, height }) => {
   if(country) {
     return (
       <div className="flag">
-        <img src={country.flag} alt={country.name} width="200vw" height="140vh"/>
+        <img src={country.flag} alt={country.name} width={width} height={height}/>
 
       </div>
     );
