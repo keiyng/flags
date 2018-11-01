@@ -36,14 +36,17 @@ class Record extends Component {
         </div>
       );
     }
-    return this.state.attempts.map(attempt => {
+    return this.state.attempts.map((attempt, index) => {
       return (
-        <div key={attempt._id}>
+        <div key={attempt._id} id="records">
+          <div>{index+1}</div>
+          <div>
           <ul>
-            <li>Date: {attempt.date}</li>
+            <li>Date: {attempt.date.substring(0,10)}</li>
             <li>Continent: {attempt.continent}</li>
             <li>Score: {attempt.score}</li>
           </ul>
+          </div>
         </div>
       );
     });

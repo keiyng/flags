@@ -180,7 +180,7 @@ ul {
       font-size: inherit;
       background-color: white;
       color: black;
-      border: 3px solid $dark-gray;
+      border: 2px solid $dark-gray;
       font-weight: normal;
 
     }
@@ -243,6 +243,34 @@ ul {
 
 .results {
   text-align: center;
+}
+
+#records {
+  display: flex;
+  margin-top: 12px;
+  // align-items: center;
+  @include flex-centered;
+  text-align: center;
+  
+
+  div:nth-of-type(1) {
+    background-color:$dark-green;
+    color: white;
+    width: 10vw;
+    padding-top: 6px;
+    font-size: 48px;
+    margin: 4px 0;
+    box-shadow: 6px 6px 10px $gray;
+  }
+  div:nth-of-type(2) {
+    background-color: white;
+    font-size: 20px;
+    width: 20vw;
+    padding: 4px;
+    margin: 4px 0;
+    border: 1px solid $dark-green;
+    box-shadow: 6px 6px 10px $gray;
+  }
 }
 
 .answer {

@@ -81,7 +81,7 @@ class Menu extends Component {
                   this.state.selected === 'attempts' ? 'selected' : 'unselected'
                 }
               >
-                Your Attempts
+                Your Achievements
               </Link>
             </button>
           )}
