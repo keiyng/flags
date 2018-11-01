@@ -14,7 +14,7 @@ class Review extends Component {
     return countries.map(country => {
       return (
         <li key={country.name}>
-          <Flag key={country.flag} country={country} />
+          <Flag key={country.flag} country={country} width="400vw" height="240vh"/>
           <CountryName key={country.name} country={country} />
         </li>
       );

@@ -119,12 +119,12 @@ class MultipleChoice extends Component {
         ) : (
           <button onClick={this.checkAnswer}>Submit</button>
         )}
-        <p className="message">{this.state.message}</p>
         </div>
+        <p className="message">{this.state.message}</p>
 
         {this.props.ended && (
           <div>
-            <p>You've finished the quiz!</p>
+            <p className="message">You've finished the quiz!</p>
             <button onClick={this.seeResults}>See results</button>
           </div>
         )}

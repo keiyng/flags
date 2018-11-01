@@ -38,7 +38,9 @@ class Menu extends Component {
                 this.state.selected === mode ? 'selected' : 'unselected'
               }
             >
-              {mode === 'Flashcard' ? `Learn with ${mode}s` : `Take the ${mode}`}
+              {mode === 'Flashcard'
+                ? `Learn with ${mode}s`
+                : `Take the ${mode}`}
             </Link>
           </button>
         );
@@ -69,7 +71,7 @@ class Menu extends Component {
       <div>
         <div id="menu">
           {this.modeMenu()}
-          
+
           {this.props.auth && (
             <button>
               <Link
@@ -85,7 +87,7 @@ class Menu extends Component {
           )}
 
           {this.authStatus()}
-          
+
           <button>
             <Link
               to="/"
@@ -97,10 +99,6 @@ class Menu extends Component {
               Home
             </Link>
           </button>
-          
-        </div>
-        <div id="greeting">
-          {this.props.auth && <p>Hello, {this.props.auth.userName}!</p>}
         </div>
       </div>
     );

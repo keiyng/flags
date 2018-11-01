@@ -75,9 +75,7 @@ class QuizItem extends Component {
     }
   }
 
-  endQuiz() {
-
-  }
+  endQuiz() {}
 
   saveResults() {
     axios
@@ -112,15 +110,14 @@ class QuizItem extends Component {
     return (
       <div>
         {this.state.ended && this.state.showResults ? (
-          <div>
-            <h2>End of Quiz</h2>
+          <div className="results">
+            <div>
+              {this.state.message}
+              {this.state.error ? 'An error has occured. Unable to save your results.' : ''}
+            </div>
             <div>
               You got {this.state.correct}/{this.state.continent.length} flags
               right!
-              <div>
-                {this.state.message}
-                {this.state.error ? 'An error has occured' : ''}
-              </div>
               <div>
                 Let's review what you got wrong:
                 <Review
@@ -132,7 +129,7 @@ class QuizItem extends Component {
           </div>
         ) : (
           <div>
-            <Flag country={this.state.next} width="400vw" height="240vh"/>
+            <Flag country={this.state.next} width="400vw" height="240vh" />
             <MultipleChoice
               continent={this.state.continent}
               answer={this.state.next['name']}
@@ -145,7 +142,6 @@ class QuizItem extends Component {
             />
           </div>
         )}
-
       </div>
     );
   }

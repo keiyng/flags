@@ -52,7 +52,6 @@ class Record extends Component {
   render() {
     return (
       <div>
-        <h1>Record</h1>
         {this.state.attempts && this.renderAttempts()}
       </div>
     );

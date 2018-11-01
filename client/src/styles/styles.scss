@@ -37,6 +37,13 @@ ul {
     font-size: 36px;
   }
 
+  #greeting {
+    // background-color: red;
+    text-align: left;
+    text-shadow: none;
+  
+  }
+
 }
 
 .selected {
@@ -76,12 +83,6 @@ ul {
       background-color: white;
     }
   }
-}
-
-#greeting {
-  // background-color: red;
-  text-align: left;
-
 }
 
 #spinningEarth {
@@ -180,7 +181,7 @@ ul {
       background-color: white;
       color: black;
       border: 3px solid $dark-gray;
-      font-weight: inherit;
+      font-weight: normal;
 
     }
   }
@@ -228,11 +229,20 @@ ul {
       border-radius: 3px;
       background-color: $dark-green;
       color: white;
-      font-weight: inherit;
+      font-weight: normal;
 
     }
   }
 
+  .message {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+}
+
+.results {
+  text-align: center;
 }
 
 .answer {
