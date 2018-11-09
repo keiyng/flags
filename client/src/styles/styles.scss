@@ -30,7 +30,6 @@ ul {
   text-align: center;
   text-shadow: 1px 1px gray;
   font-family: 'Lato', sans-serif;
-  // background-color: red;
   margin-top: -40px;
 
   h1 {
@@ -38,10 +37,8 @@ ul {
   }
 
   #greeting {
-    // background-color: red;
     text-align: left;
     text-shadow: none;
-  
   }
 
 }
@@ -56,10 +53,6 @@ ul {
 
 #menu {
   @include flex-centered;
-  // background-color: yellow;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
   flex-flow: row wrap;
   padding: 5px;
 
@@ -91,7 +84,7 @@ ul {
 }
 
 .switch {
-  // background-color: red;
+
   margin-bottom: 10px;
   span {
     margin-right: 14px;
@@ -100,7 +93,6 @@ ul {
 }
 
 .sidebar {
-  // background-color: red;
 
   li {
     margin: 10px;
@@ -170,7 +162,6 @@ ul {
         padding-top: 44px;
         width: 120px;
         height: 120px;
-        // text-justify: round;
         text-align: center;
       }
     }
@@ -245,10 +236,14 @@ ul {
   text-align: center;
 }
 
+#noRecord {
+  margin-top: 10px;
+  @include flex-centered;
+}
+
 #records {
   display: flex;
   margin-top: 12px;
-  // align-items: center;
   @include flex-centered;
   text-align: center;
   

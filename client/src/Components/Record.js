@@ -30,8 +30,8 @@ class Record extends Component {
   renderAttempts() {
     if (this.state.attempts.length === 0) {
       return (
-        <div>
-          <p>You don't have any record yet.</p>
+        <div id="noRecord">
+          <p>You don't have any record yet. </p>
           <p><Link to="/quiz">Take the quiz</Link> now!</p>
         </div>
       );
